@@ -10,9 +10,13 @@ get('/') do
   erb(:index)
 end
 
-post('/') do
+post('/recipes') do
   name = params['name']
-  @recipes = Recipe.all
-  recipe = Recipe.create({:name => name, :instruction => nil})
-  erb(:index)
+  @recipe = Recipe.create({:name => name, :instruction => nil})
+  redirect("/recipes/".concat(@recipe.id.to_s))
+end
+
+get('/recipes/:id') do
+  @recipe = Recipe.find(params['id'].to_i)
+  erb(:recipe)
 end
