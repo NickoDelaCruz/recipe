@@ -12,7 +12,8 @@ end
 
 post('/recipes') do
   name = params['name']
-  @recipe = Recipe.create({:name => name, :instruction => nil})
+  instruction = params['instruction']
+  @recipe = Recipe.create({:name => name, :instruction => instruction})
   redirect("/recipes/".concat(@recipe.id.to_s))
 end
 
