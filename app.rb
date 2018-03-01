@@ -12,12 +12,18 @@ end
 
 post('/recipes') do
   name = params['name']
-  instruction = params['instruction']
-  @recipe = Recipe.create({:name => name, :instruction => instruction})
+  @recipe = Recipe.create({:name => name, :instruction => nil})
   redirect("/recipes/".concat(@recipe.id.to_s))
 end
 
 get('/recipes/:id') do
   @recipe = Recipe.find(params['id'].to_i)
+  erb(:recipe)
+end
+
+post('/recipes/:id') do
+  instruction = params['instruction']
+  @recipe = Recipe.find(params['id'].to_i)
+  @recipe.instruction = instruction
   erb(:recipe)
 end

@@ -1,2 +1,11 @@
-<h2><%= @recipe.name %></h2>
-<h2><%= @recipe.instruction %></h2>
+<h2>recipe: <%= @recipe.name %></h2>
+<h4>instructions: <%= @recipe.instruction %></h4>
+<br>
+<form action="/recipes/<%= @recipe.id %>" method="post">
+  <label for="instruction">Instructions</label>
+  <textarea id="instruction" name="instruction" type="text"></textarea>
+
+  <button type="submit">Add instructions</button>
+</form>
+<br>
+<a href="/">Return home</a>
